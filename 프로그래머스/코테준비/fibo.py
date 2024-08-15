@@ -14,7 +14,7 @@ def soultion(n):
 print(soultion(100))
 
 
-def fibo(n, __cache = {0:0, 1:1}):
+def fibo(n, __cache={0:0, 1:1}):
     if n in __cache:
         return __cache[n]
 
