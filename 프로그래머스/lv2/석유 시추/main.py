@@ -1,5 +1,8 @@
 from collections import deque
 
+
+directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
+
 import numpy as np
 def solution(land):
     answer = 0
@@ -7,9 +10,10 @@ def solution(land):
 
     # 방문배열
     visited = [[False] * m for _ in range(n)]
-    # 각 열의 기름의 총량을 저장하는 리스트
+    # 각 열의 기름을 얼마나 추출할 수 있는지 세팅
     oil = [0] * m
-    directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
+    directions = [(0, 1), (1, 0),
+                  (-1, 0), (0, -1)]
 
     def bfs(row, col):
         queue = deque()
@@ -36,7 +40,9 @@ def solution(land):
             oil[c] += cnt
 
     # bfs 탐색
+    # 행
     for i in range(n):
+        # 열
         for j in range(m):
             if land[i][j] == 1 and not visited[i][j]:
                 bfs(i, j)
@@ -55,5 +61,31 @@ test_cases = [
 ]
 
 
+
+
 for land in test_cases:
     print(solution(land))
+
+
+
+
+## BFS 원형
+
+"""
+def dfs(x, y)
+    queue = deque()
+    queue.append([x, y])
+    while queue:
+        x, y = queue.popleft()
+        for dx, dy in directions:
+            nx = x + dx
+            ny = y + dy
+            if 0 <= nx < n and 0 <= ny < m:
+                queue.append([nx, ny])
+
+
+for x in range(n):
+    for y in range(m):
+        bfs(x, y)
+        
+"""
